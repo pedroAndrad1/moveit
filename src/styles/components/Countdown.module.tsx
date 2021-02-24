@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CountdownContainer = styled.div`
     display: flex;
     align-items: center;
-    //font-family: 'Rajdhani', inherit;
+    font-family: 'Rajdhani', sans-serif;
     font-weight: 600;
     color: var(--title);
     

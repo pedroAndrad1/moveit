@@ -2,7 +2,7 @@ import { CountdownContainer } from "../../styles/components/Countdown.module";
 
 export default function Countdown(){
     return(
-        <CountdownContainer>
+        <CountdownContainer >
             <div>
                 <span>2</span>
                 <span>5</span>
