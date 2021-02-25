@@ -31,6 +31,7 @@ export const CountdownContainer = styled.div`
     //Numeros
     & > div span{
         flex: 1;
+        width: 5rem; //Para nao ficar mudando o tamanho da caixa do numero e zoando o layout
     }
 
     //Primeiro numero de cada caixa
@@ -42,9 +43,10 @@ export const CountdownContainer = styled.div`
     & > div span:last-child{
         border-left: 1px solid #f0f1f3;
     }
+
 `
 
-export const CountdownButton = styled.button`
+export const CountdownButtonStart = styled.button`
     width: 100%;
     height: 5rem;
 
@@ -68,4 +70,40 @@ export const CountdownButton = styled.button`
     &:hover{
         background: var(--blue-dark);
     }
+`
+
+export const CountdownButtonGiveUp = styled.button`
+    width: 100%;
+    height: 5rem;
+
+    margin-top: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 5px;
+
+    background: var(--white);
+    color: var(--text);
+
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    transition: .2s;
+
+    &:not(:disabled):hover{
+        background: var(--red);
+        color: var(--white);
+    }
+
+    //Estilos para quando o countdown chegar a zero. 
+    //O botão sera o mesmo, mas estara disabled
+    &:disabled{
+        color: var(--text);
+        cursor: not-allowed;
+        border-bottom: 5px solid #4CD62B;
+    }
+
 `
