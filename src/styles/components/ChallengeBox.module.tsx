@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ChallengeBoxContainer = styled.div`
-    height: 80%;
+    height: 100%;
 
     background: var(--white);
     border-radius: 5px;

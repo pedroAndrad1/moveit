@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const BarContainer = styled.header`
     display: flex;
@@ -18,15 +18,25 @@ export const Bar = styled.div`
     position: relative;
 
 `
-export const StyledExperienceBar = styled.div`
+//Usar interface e necessario para o typescript nao reclamar de customprops
+interface ExperienceProps{
+    experiencePercent: number;
+}
+export const StyledExperienceBar = styled.div<ExperienceProps>`
      height: 4px;
      border-radius: 4px;
      background: var(--green);
-     width: 50%;
+     width: ${props => `${props.experiencePercent}%`};
 `
-export const ExperienceValue = styled.span`
+export const ExperienceValue = styled.span<ExperienceProps>`
     position: absolute;
     top: 12px;
-    left: 50%;
+    left:${props => `${props.experiencePercent}%`};
     transform: translateX(-50%);
+    //Para nao aparecer a quantidade de xp, caso seja zero
+    ${props => 
+        props.experiencePercent == 0 && css`
+            display: none;
+        `
+    }
 `
