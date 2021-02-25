@@ -7,4 +7,6 @@ export const StyledSection = styled.section`
     grid-template-columns: 1fr 1fr;
     gap: 6.25rem;
     align-content: center;
+
+    padding: 2rem 2rem 0 2rem;
 `

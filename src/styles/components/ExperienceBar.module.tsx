@@ -7,6 +7,7 @@ export const BarContainer = styled.header`
     & span{
         font-size: 1rem;
     }
+    
 `
 export const Bar = styled.div`
     flex: 1;
