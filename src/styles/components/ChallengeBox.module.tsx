@@ -14,13 +14,16 @@ export const ChallengeBoxContainer = styled.div`
     justify-content: center;
 
     text-align: center;
+
+    & > div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 100%;
+    }
 `
 export const ChallengeBoxNotActive = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 50%;
 
     & strong{
         font-size: 1.5rem;
@@ -34,4 +37,72 @@ export const ChallengeBoxNotActive = styled.div`
         justify-content: center;
         max-width: 70%;
     }
+`
+export const ChallengeBoxActive = styled.div`
+    
+    & header{
+        color: var(--blue);
+        font-weight: 600;
+        font-size: 1.25rem;
+        padding: 0 2rem 1.5rem;
+        border-bottom: 1px solid var(--gray-line);
+    }
+
+    & main{
+        flex: 1;
+
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    & main strong{
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--title);
+        margin: 1.5rem 0 1rem;
+    }
+
+    & main p{
+        line-height: 1.5rem;
+    }
+
+    & footer{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+
+        width: 100%;
+    }
+
+    & footer button{
+        height: 3rem;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 0;
+        border-radius: 5px;
+
+        color: var(--white);
+
+        font-size: 1rem;
+        font-weight: 600;
+
+        transition: .2s;
+    }
+
+    & footer button:hover{
+        filter: brightness(0.9);
+    }
+`
+
+export const SucceedButton = styled.button`
+    background: var(--green);
+`
+
+export const FailedButton = styled.button`
+    background: var(--red);
 `
