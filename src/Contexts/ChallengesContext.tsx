@@ -1,5 +1,5 @@
 //Informacoes compartilhadas por todos os components
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import challenges from '../../challenges.json';
 
 export const ChallengesContext = createContext({} as ChallengesContextData);
@@ -30,12 +30,17 @@ interface Challenge{
     amount: number;
 }
 export function ChallengesProvider({ children }: ChallengesProviderProps){
-
+    
     const[level, setLevel] = useState(1);
     const[currentExperience, setCurrentExperience] = useState(0);
     const[challengesCompleted, setChallengesCompleted] = useState(0);
     const[activeChallenge, setActiveChallenge] = useState(null);
     const experienceToNextLevel = Math.pow( (level + 1) * 4 , 2)
+    
+    //Pedindo permissao para fazer notificacoes assim que carrega a app
+    useEffect( () =>{
+        Notification.requestPermission();        
+    }, [])
 
     const levelUp = () => {
         setLevel( level + 1 );
@@ -43,9 +48,19 @@ export function ChallengesProvider({ children }: ChallengesProviderProps){
 
     const startNewChallenge = () =>{
         const randomIndex = Math.floor( Math.random() * challenges.length );
-        const randomChallenge = challenges[randomIndex];
+        const challenge = challenges[randomIndex];
 
-        setActiveChallenge(randomChallenge);
+        setActiveChallenge(challenge);
+
+        //Para avisar que o ciclo acabou
+        new Audio('/notification.mp3').play();
+
+        //Disparando uma notification se estiver permitido
+        if(Notification.permission == 'granted'){
+            new Notification('Novo desafio! 🎉 🎉 🎉 ', {
+                body: `Valendo ${challenge.amount}xp.`
+            })
+        }
     }
 
     const resetChallenge = () =>{
