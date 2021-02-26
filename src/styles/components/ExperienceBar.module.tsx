@@ -27,6 +27,7 @@ export const StyledExperienceBar = styled.div<ExperienceProps>`
      border-radius: 4px;
      background: var(--green);
      width: ${props => `${props.experiencePercent}%`};
+     transition: .2s;
 `
 export const ExperienceValue = styled.span<ExperienceProps>`
     position: absolute;
