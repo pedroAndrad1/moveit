@@ -1,6 +1,9 @@
 //Informacoes compartilhadas por todos os components
+import Cookies from "js-cookie";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import challenges from '../../challenges.json';
+import LevelUpModal from "../components/LevelUpModal/LevelUpModal";
+import { Level } from "../styles/components/Profile.module";
 
 export const ChallengesContext = createContext({} as ChallengesContextData);
 
@@ -10,8 +13,10 @@ export const ChallengesContext = createContext({} as ChallengesContextData);
 //Para definir que o children sera um component. 
 interface ChallengesProviderProps {
     children: ReactNode;
+    level: number; 
+    currentExperience: number; 
+    challengesCompleted: number;
 }
-
 interface ChallengesContextData{
     level: number;
     currentExperience: number ;
@@ -22,6 +27,7 @@ interface ChallengesContextData{
     levelUp: () => void;
     resetChallenge: () => void;
     completeChallenge: () => void;
+    closeLevelUpModal: () => void;
 }
 
 interface Challenge{
@@ -29,21 +35,36 @@ interface Challenge{
     description: string;
     amount: number;
 }
-export function ChallengesProvider({ children }: ChallengesProviderProps){
-    
-    const[level, setLevel] = useState(1);
-    const[currentExperience, setCurrentExperience] = useState(0);
-    const[challengesCompleted, setChallengesCompleted] = useState(0);
+export function ChallengesProvider({ children, ...rest }: ChallengesProviderProps){
+    //?? para caso nao tenha, coloque aquele valor
+    const[level, setLevel] = useState(rest.level ?? 1);
+    const[currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
+    const[challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
     const[activeChallenge, setActiveChallenge] = useState(null);
+    const[isLevelUpModalActive, setIsLevelUpModalActive] = useState(false);
     const experienceToNextLevel = Math.pow( (level + 1) * 4 , 2)
     
-    //Pedindo permissao para fazer notificacoes assim que carrega a app
+    //Pedindo permissao para fazer notificacoes assim que carrega a app ao carregar a app
     useEffect( () =>{
-        Notification.requestPermission();        
+        Notification.requestPermission();
     }, [])
+    
+    //Salva o level, currentExperience, challengesCompleted em um cookie para fazer a persistencia
+    //dos dados, sempre que um desses states mudarem. 
+    //Essa vai ser uma forma provisoria e no futuro vou buscar um back-end para tal.
+    useEffect( () =>{
+        Cookies.set('level',String(level) );
+        Cookies.set('currentExperience',String(currentExperience) );
+        Cookies.set('challengesCompleted',String(challengesCompleted) );
+    }, [level, currentExperience, challengesCompleted] )
 
     const levelUp = () => {
         setLevel( level + 1 );
+        setIsLevelUpModalActive(true);
+    }
+
+    const closeLevelUpModal = () => {
+        setIsLevelUpModalActive(false);
     }
 
     const startNewChallenge = () =>{
@@ -95,10 +116,14 @@ export function ChallengesProvider({ children }: ChallengesProviderProps){
                 activeChallenge,
                 resetChallenge,
                 experienceToNextLevel,
-                completeChallenge
+                completeChallenge,
+                closeLevelUpModal
             } 
         }>
             {children}
+            {
+                isLevelUpModalActive && <LevelUpModal />
+            }
         </ChallengesContext.Provider>
     )
 }
