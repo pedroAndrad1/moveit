@@ -1,32 +1,45 @@
 import styled from 'styled-components';
 
-export const LoginBox = styled.div`
+export const Box = styled.div`
     height: 80%;
     width: 50%;
     margin: 0 auto;
     background: var(--white);
     border-radius: 5px;
     box-shadow: 0 0 60px rgba(0,0,0, .05);
-
     display: flex;
     flex-direction: column;
+
+ 
 
     @media screen and (max-width: 800px) {
         width: 80%;
         height: 60%;
     }
+
+    @media screen and (max-height: 360px) {
+        width: 80%;
+        height: 100%;
+    }
+    
+`
+export const Main = styled.main`
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 `
 
-export const LoginContainer = styled.div`
+export const Container = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     background: var(--blue-dark);
+
 `
 
-export const LoginInput = styled.input`
+export const Input = styled.input`
     display: block;
     border: 1px solid rgb(238, 238, 238);
     padding: .8rem;
@@ -62,6 +75,7 @@ export const InputGroup = styled.div`
 export const ButtonGroup = styled.div`
     width: 100%;
     display: flex;
+    justify-content: space-between;
 
 
    & button{
@@ -87,17 +101,26 @@ export const ButtonGroup = styled.div`
     }
 `
 
-export const LoginButton = styled.button`
+export const Button = styled.button`
     background: var(--green);
     width: 40%;
 `
 export const CadastroButton = styled.button`
     background: var(--red);
+    width: 40%;
 `
-export const CadastroFooter = styled.footer`
+export const Footer = styled.footer`
     padding: .75rem 1.25rem;
     background-color: rgba(0,0,0,.03);
     border-top: 1px solid rgba(0,0,0,.125);
 
     text-align: center;
 `
+export const Header = styled.header`
+    padding: 2rem;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    font-size: 1.25rem;
+
+    text-align: center;
+`;
