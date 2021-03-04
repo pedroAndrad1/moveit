@@ -60,7 +60,7 @@ export function CountdownContextProvider({ children }: CountdownProviderProps) {
         //Limpando as execucoes pendentes do timeout, para de vez o timeout
         clearTimeout(countdownTimeout);
         //Resetando o timer
-        setTime(0.1 * 60);
+        setTime(30 * 60);
         //Resetando o botao
         setHasFinished(false);
     }
