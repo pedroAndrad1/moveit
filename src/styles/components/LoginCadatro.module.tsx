@@ -37,6 +37,10 @@ export const Container = styled.div`
 
     background: var(--blue-dark);
 
+    @media screen and (max-height: 360px) {
+       height: auto;
+    }
+
 `
 
 export const Input = styled.input`
