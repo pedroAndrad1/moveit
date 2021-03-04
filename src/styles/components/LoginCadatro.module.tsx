@@ -73,13 +73,14 @@ export const InputGroup = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-bottom: 2rem;
+    //margin-bottom: 2rem;
 `
 
 export const ButtonGroup = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-top: 2rem;
 
 
    & button{
@@ -108,10 +109,12 @@ export const ButtonGroup = styled.div`
 export const Button = styled.button`
     background: var(--green);
     width: 40%;
+
 `
-export const CadastroButton = styled.button`
+export const Quit = styled.button`
     background: var(--red);
     width: 40%;
+
 `
 export const Footer = styled.footer`
     padding: .75rem 1.25rem;

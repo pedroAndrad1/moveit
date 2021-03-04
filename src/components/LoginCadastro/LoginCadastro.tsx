@@ -1,9 +1,11 @@
 import {
-    ButtonGroup, InputGroup, Box, Button, Container, Input, CadastroButton,
+    ButtonGroup, InputGroup, Box, Button, Container, Input, Quit,
     Footer, Form, Main, Header
 }
     from "../../styles/components/LoginCadatro.module";
 import Link from 'next/link'
+import ErrorMessage from "../ErrorMessage";
+
 
 interface LoginCadastroProps {
     type: 'login' | 'cadastro'
@@ -11,7 +13,6 @@ interface LoginCadastroProps {
 
 
 export default function LoginCadastro({ type }: LoginCadastroProps) {
-
 
 
     return (
@@ -32,9 +33,9 @@ export default function LoginCadastro({ type }: LoginCadastroProps) {
                     <Form>
                         <InputGroup>
                             <label htmlFor="github">Github:</label>
-                            <Input name='github' />
+                            <Input name='github' placeholder='Ex: https://github.com/seu-perfil'/>
                         </InputGroup>
-
+                       
                         <InputGroup>
                             <label htmlFor="senha">Senha:</label>
                             <Input type='password' name='senha' />
@@ -55,9 +56,9 @@ export default function LoginCadastro({ type }: LoginCadastroProps) {
                                         Cadastrar
                                 </Button>
                                     <Link href='/login'>
-                                        <CadastroButton>
+                                        <Quit>
                                             Voltar
-                                    </CadastroButton>
+                                    </Quit>
                                     </Link>
                                 </ButtonGroup>
                         }
