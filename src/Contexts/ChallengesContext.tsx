@@ -53,9 +53,9 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     //dos dados, sempre que um desses states mudarem. 
     //Essa vai ser uma forma provisoria e no futuro vou buscar um back-end para tal.
     useEffect( () =>{
-        Cookies.set('level',String(level) );
-        Cookies.set('currentExperience',String(currentExperience) );
-        Cookies.set('challengesCompleted',String(challengesCompleted) );
+        Cookies.set('level', String(level), {expires: new Date('9999-01-01')} );
+        Cookies.set('currentExperience', String(currentExperience), {expires: new Date('9999-01-01')} );
+        Cookies.set('challengesCompleted', String(challengesCompleted), {expires: new Date('9999-01-01')} );
     }, [level, currentExperience, challengesCompleted] )
 
     const levelUp = () => {
